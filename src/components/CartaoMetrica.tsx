@@ -62,7 +62,13 @@ export function CartaoMetrica({
           critico ? "text-critico" : "text-foreground",
         )}
       >
-        <NumeroAnimado valor={valor} casas={casas} {...(sufixo ? { sufixo } : {})} />
+        <NumeroAnimado
+          valor={valor}
+          casas={casas}
+          {...(sufixo ? { sufixo } : {})}
+          {...(prefixo ? { prefixo } : {})}
+        />
+
       </p>
 
       {detalhe ? <p className="mt-1 text-rotulo text-muted-foreground">{detalhe}</p> : null}
