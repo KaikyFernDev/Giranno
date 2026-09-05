@@ -5,10 +5,15 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system — warm dark, editorial.
- * Display: "Instrument Serif" (elegant, distinctive).
- * Body: "Sora" (geometric, neutral).
- * Accent: warm amber/gold. Avoids the generic AI indigo/purple look.
+ * SISTEMA DE DESIGN — Controle de Estoque
+ *
+ * Paleta: base neutra (cinza-claro / branco no fundo, cinza quase preto no
+ * texto) com UM accent forte (verde-esmeralda) reservado exclusivamente para
+ * ações primárias. Um único tom de alerta (vermelho contido) é usado somente
+ * para alertas críticos de estoque — nenhuma outra cor decorativa existe.
+ *
+ * Tipografia: Manrope. Escala curta e deliberada (4 tamanhos no total, no
+ * máximo 3 por tela). Títulos 600-700, corpo 400.
  */
 
 @theme inline {
@@ -17,11 +22,20 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala tipográfica curta e intencional */
+  --text-numero: 2.25rem;
+  --text-numero--line-height: 1.05;
+  --text-numero--letter-spacing: -0.03em;
+  --text-titulo: 1.0625rem;
+  --text-titulo--line-height: 1.35;
+  --text-titulo--letter-spacing: -0.011em;
+  --text-corpo: 0.9375rem;
+  --text-corpo--line-height: 1.55;
+  --text-rotulo: 0.8125rem;
+  --text-rotulo--line-height: 1.4;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,14 +53,12 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-critico: var(--critico);
+  --color-critico-foreground: var(--critico-foreground);
+  --color-critico-suave: var(--critico-suave);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -58,88 +70,59 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.625rem;
 
-  /* Warm dark — charcoal with olive/umber undertone */
-  --background: oklch(0.16 0.012 75);
-  --foreground: oklch(0.96 0.012 85);
+  /* Base neutra */
+  --background: oklch(0.981 0.0015 250);
+  --foreground: oklch(0.215 0.012 258);
 
-  --card: oklch(0.2 0.014 75);
-  --card-foreground: oklch(0.96 0.012 85);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.215 0.012 258);
 
-  --popover: oklch(0.2 0.014 75);
-  --popover-foreground: oklch(0.96 0.012 85);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.215 0.012 258);
 
-  /* Amber/gold accent */
-  --primary: oklch(0.82 0.14 75);
-  --primary-foreground: oklch(0.18 0.02 75);
+  /* Accent único — verde-esmeralda, só para ações primárias */
+  --primary: oklch(0.515 0.105 168);
+  --primary-foreground: oklch(0.995 0 0);
 
-  --secondary: oklch(0.26 0.016 75);
-  --secondary-foreground: oklch(0.96 0.012 85);
+  --secondary: oklch(0.962 0.003 250);
+  --secondary-foreground: oklch(0.3 0.012 258);
 
-  --muted: oklch(0.24 0.014 75);
-  --muted-foreground: oklch(0.7 0.02 80);
+  --muted: oklch(0.966 0.003 250);
+  --muted-foreground: oklch(0.525 0.011 258);
 
-  --accent: oklch(0.82 0.14 75);
-  --accent-foreground: oklch(0.18 0.02 75);
+  /* Tinta suave do accent, apenas para estados de hover/seleção */
+  --accent: oklch(0.958 0.017 168);
+  --accent-foreground: oklch(0.4 0.085 168);
 
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.96 0.012 85);
+  /* Tom de alerta — exclusivo de estoque crítico */
+  --critico: oklch(0.555 0.185 25);
+  --critico-foreground: oklch(0.995 0 0);
+  --critico-suave: oklch(0.965 0.022 25);
 
-  --border: oklch(0.3 0.014 75);
-  --input: oklch(0.3 0.014 75);
-  --ring: oklch(0.82 0.14 75);
+  --destructive: oklch(0.555 0.185 25);
+  --destructive-foreground: oklch(0.995 0 0);
 
-  --chart-1: oklch(0.82 0.14 75);
-  --chart-2: oklch(0.7 0.12 60);
-  --chart-3: oklch(0.6 0.1 95);
-  --chart-4: oklch(0.75 0.1 40);
-  --chart-5: oklch(0.55 0.08 250);
+  /* Borda de 1px quase invisível */
+  --border: oklch(0.925 0.003 250);
+  --input: oklch(0.912 0.003 250);
+  --ring: oklch(0.515 0.105 168);
 
-  --sidebar: oklch(0.18 0.014 75);
-  --sidebar-foreground: oklch(0.96 0.012 85);
-  --sidebar-primary: oklch(0.82 0.14 75);
-  --sidebar-primary-foreground: oklch(0.18 0.02 75);
-  --sidebar-accent: oklch(0.26 0.016 75);
-  --sidebar-accent-foreground: oklch(0.96 0.012 85);
-  --sidebar-border: oklch(0.3 0.014 75);
-  --sidebar-ring: oklch(0.82 0.14 75);
-}
+  /* Sombras suaves — sensação de flutuar, nunca sombra dura */
+  --shadow-card: 0 1px 2px oklch(0.215 0.012 258 / 0.04),
+    0 2px 8px oklch(0.215 0.012 258 / 0.045);
+  --shadow-flutuante: 0 2px 4px oklch(0.215 0.012 258 / 0.05),
+    0 10px 24px oklch(0.215 0.012 258 / 0.09);
 
-.dark {
-  /* same warm dark — site is dark by default */
-  --background: oklch(0.16 0.012 75);
-  --foreground: oklch(0.96 0.012 85);
-  --card: oklch(0.2 0.014 75);
-  --card-foreground: oklch(0.96 0.012 85);
-  --popover: oklch(0.2 0.014 75);
-  --popover-foreground: oklch(0.96 0.012 85);
-  --primary: oklch(0.82 0.14 75);
-  --primary-foreground: oklch(0.18 0.02 75);
-  --secondary: oklch(0.26 0.016 75);
-  --secondary-foreground: oklch(0.96 0.012 85);
-  --muted: oklch(0.24 0.014 75);
-  --muted-foreground: oklch(0.7 0.02 80);
-  --accent: oklch(0.82 0.14 75);
-  --accent-foreground: oklch(0.18 0.02 75);
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.96 0.012 85);
-  --border: oklch(0.3 0.014 75);
-  --input: oklch(0.3 0.014 75);
-  --ring: oklch(0.82 0.14 75);
-  --chart-1: oklch(0.82 0.14 75);
-  --chart-2: oklch(0.7 0.12 60);
-  --chart-3: oklch(0.6 0.1 95);
-  --chart-4: oklch(0.75 0.1 40);
-  --chart-5: oklch(0.55 0.08 250);
-  --sidebar: oklch(0.18 0.014 75);
-  --sidebar-foreground: oklch(0.96 0.012 85);
-  --sidebar-primary: oklch(0.82 0.14 75);
-  --sidebar-primary-foreground: oklch(0.18 0.02 75);
-  --sidebar-accent: oklch(0.26 0.016 75);
-  --sidebar-accent-foreground: oklch(0.96 0.012 85);
-  --sidebar-border: oklch(0.3 0.014 75);
-  --sidebar-ring: oklch(0.82 0.14 75);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.215 0.012 258);
+  --sidebar-primary: oklch(0.515 0.105 168);
+  --sidebar-primary-foreground: oklch(0.995 0 0);
+  --sidebar-accent: oklch(0.958 0.017 168);
+  --sidebar-accent-foreground: oklch(0.4 0.085 168);
+  --sidebar-border: oklch(0.925 0.003 250);
+  --sidebar-ring: oklch(0.515 0.105 168);
 }
 
 @layer base {
@@ -147,76 +130,105 @@
     border-color: var(--color-border);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
 
-  ::selection {
-    background-color: var(--color-primary);
-    color: var(--color-primary-foreground);
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    letter-spacing: -0.015em;
   }
 
-  /* Thin warm scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-background);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: oklch(0.32 0.016 75);
-    border-radius: 9999px;
-    border: 3px solid var(--color-background);
+  /* Números tabulares para que valores não "dancem" ao animar */
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-@layer utilities {
-  .font-display {
-    font-family: var(--font-display);
-  }
+/* ------------------------------------------------------------------ */
+/* Animações                                                           */
+/* ------------------------------------------------------------------ */
 
-  /* Subtle grain/noise overlay for editorial depth */
-  .grain {
-    position: relative;
+@keyframes pulso-alerta {
+  0%,
+  100% {
+    transform: scale(1);
   }
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  50% {
+    transform: scale(1.05);
   }
+}
 
-  /* Scroll reveal */
-  .reveal {
+@keyframes entrada-card {
+  from {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(12px);
   }
-  .reveal.is-visible {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
+}
 
-  .text-balance {
-    text-wrap: balance;
+/* Badge de estoque crítico: pulso lento e discreto */
+@utility pulso-alerta {
+  animation: pulso-alerta 2s ease-in-out infinite;
+}
+
+/* Entrada escalonada — o atraso vem por style={{ animationDelay }} */
+@utility entrada-card {
+  animation: entrada-card 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Cartão que flutua sutilmente ao passar o mouse */
+@utility flutuar {
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-flutuante);
+  }
+}
+
+@utility sombra-card {
+  box-shadow: var(--shadow-card);
+}
+
+/* Respeita quem pediu menos movimento no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Impressão — usada para gerar o PDF da lista de reposição            */
+/* ------------------------------------------------------------------ */
+
+@media print {
+  body {
+    background: #fff;
   }
 
-  .bg-amber-glow {
-    background: radial-gradient(
-      60% 60% at 50% 0%,
-      oklch(0.82 0.14 75 / 0.12) 0%,
-      transparent 70%
-    );
+  .nao-imprimir {
+    display: none !important;
+  }
+
+  .area-impressao {
+    box-shadow: none !important;
+    border: none !important;
   }
 }
