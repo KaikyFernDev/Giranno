@@ -10,6 +10,8 @@ export interface CartaoMetricaProps {
   ordem?: number;
   casas?: number;
   sufixo?: string;
+  prefixo?: string;
+
   /** Texto de apoio abaixo do número. */
   detalhe?: string;
   Icone?: LucideIcon;
