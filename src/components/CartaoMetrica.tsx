@@ -30,6 +30,8 @@ export function CartaoMetrica({
   ordem = 0,
   casas = 0,
   sufixo,
+  prefixo,
+
   detalhe,
   Icone,
   critico = false,
