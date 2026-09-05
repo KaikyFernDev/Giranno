@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as MovimentacoesRouteImport } from './routes/movimentacoes'
+import { Route as ProdutosRouteImport } from './routes/produtos'
+import { Route as ReposicaoRouteImport } from './routes/reposicao'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +25,59 @@ const EntrarRoute = EntrarRouteImport.update({
   path: '/entrar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovimentacoesRoute = MovimentacoesRouteImport.update({
+  id: '/movimentacoes',
+  path: '/movimentacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosRoute = ProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReposicaoRoute = ReposicaoRouteImport.update({
+  id: '/reposicao',
+  path: '/reposicao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/entrar': typeof EntrarRoute
+  '/movimentacoes': typeof MovimentacoesRoute
+  '/produtos': typeof ProdutosRoute
+  '/reposicao': typeof ReposicaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/entrar': typeof EntrarRoute
+  '/movimentacoes': typeof MovimentacoesRoute
+  '/produtos': typeof ProdutosRoute
+  '/reposicao': typeof ReposicaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/entrar': typeof EntrarRoute
+  '/movimentacoes': typeof MovimentacoesRoute
+  '/produtos': typeof ProdutosRoute
+  '/reposicao': typeof ReposicaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/entrar'
+  fullPaths: '/' | '/entrar' | '/movimentacoes' | '/produtos' | '/reposicao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/entrar'
-  id: '__root__' | '/' | '/entrar'
+  to: '/' | '/entrar' | '/movimentacoes' | '/produtos' | '/reposicao'
+  id:
+    '__root__' | '/' | '/entrar' | '/movimentacoes' | '/produtos' | '/reposicao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EntrarRoute: typeof EntrarRoute
+  MovimentacoesRoute: typeof MovimentacoesRoute
+  ProdutosRoute: typeof ProdutosRoute
+  ReposicaoRoute: typeof ReposicaoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +96,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntrarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movimentacoes': {
+      id: '/movimentacoes'
+      path: '/movimentacoes'
+      fullPath: '/movimentacoes'
+      preLoaderRoute: typeof MovimentacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos': {
+      id: '/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof ProdutosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reposicao': {
+      id: '/reposicao'
+      path: '/reposicao'
+      fullPath: '/reposicao'
+      preLoaderRoute: typeof ReposicaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EntrarRoute: EntrarRoute,
+  MovimentacoesRoute: MovimentacoesRoute,
+  ProdutosRoute: ProdutosRoute,
+  ReposicaoRoute: ReposicaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
