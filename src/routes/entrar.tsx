@@ -106,7 +106,7 @@ function PaginaEntrar() {
       <div className="entrada-card sombra-card w-full max-w-sm rounded-2xl border border-border bg-card p-7">
         <div className="flex items-center gap-2">
           <Boxes className="size-6 text-primary" aria-hidden="true" />
-          <span className="text-titulo font-bold">Controle de Estoque</span>
+          <span className="text-titulo font-bold">Giranno</span>
         </div>
 
         <h1 className="mt-5 text-titulo font-bold">
