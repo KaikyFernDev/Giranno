@@ -92,7 +92,7 @@ function PaginaPainel() {
               rotulo="Valor em estoque"
               valor={resumo.valorCusto}
               casas={2}
-              sufixo="R$"
+              prefixo="R$"
               ordem={2}
               Icone={Wallet}
               detalhe="pelo preço de custo"
