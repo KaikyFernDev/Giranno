@@ -12,13 +12,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/movimentacoes")({
   head: () => ({
     meta: [
-      { title: "Movimentações — histórico de entradas e saídas" },
+      { title: "Movimentações — Giranno" },
       {
         name: "description",
         content:
           "Histórico completo de entradas e saídas do estoque, com data, quantidade e observação de cada registro.",
       },
-      { property: "og:title", content: "Movimentações — histórico de entradas e saídas" },
+      { property: "og:title", content: "Movimentações — Giranno" },
       {
         property: "og:description",
         content: "Todo o histórico de entradas e saídas, com data, quantidade e observação.",

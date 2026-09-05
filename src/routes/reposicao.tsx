@@ -21,13 +21,13 @@ import { produtosQuery } from "@/lib/queries";
 export const Route = createFileRoute("/reposicao")({
   head: () => ({
     meta: [
-      { title: "Lista de reposição — o que comprar primeiro" },
+      { title: "Lista de reposição — Giranno" },
       {
         name: "description",
         content:
           "Lista de compras ordenada por urgência, com quantidade sugerida para 30 dias. Exporte em texto ou PDF.",
       },
-      { property: "og:title", content: "Lista de reposição — o que comprar primeiro" },
+      { property: "og:title", content: "Lista de reposição — Giranno" },
       {
         property: "og:description",
         content: "Compras ordenadas por urgência, com quantidade sugerida e exportação.",
