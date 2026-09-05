@@ -21,13 +21,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/produtos")({
   head: () => ({
     meta: [
-      { title: "Produtos — cadastro, busca e registro de entrada e saída" },
+      { title: "Produtos — Giranno" },
       {
         name: "description",
         content:
           "Cadastre produtos, busque por nome ou código, filtre por categoria e registre entradas e saídas em poucos cliques.",
       },
-      { property: "og:title", content: "Produtos — cadastro e movimentação de estoque" },
+      { property: "og:title", content: "Produtos — Giranno" },
       {
         property: "og:description",
         content: "Cadastro, busca por categoria e registro rápido de entradas e saídas.",

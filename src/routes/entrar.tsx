@@ -10,21 +10,23 @@ import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
+const DESCRICAO_ENTRAR =
+  "Entre no Giranno e acompanhe o giro dos seus produtos, com alerta do que precisa ser reposto antes de faltar.";
+
 export const Route = createFileRoute("/entrar")({
   head: () => ({
     meta: [
-      { title: "Entrar — Controle de Estoque para varejo" },
-      {
-        name: "description",
-        content:
-          "Acesse seu controle de estoque: cadastro de produtos, entradas e saídas rápidas e alertas de reposição.",
-      },
-      { property: "og:title", content: "Entrar — Controle de Estoque" },
-      {
-        property: "og:description",
-        content: "Acesse seu controle de estoque de mercadinho, loja ou papelaria.",
-      },
+      { title: "Entrar no Giranno — controle de estoque para varejo" },
+      { name: "description", content: DESCRICAO_ENTRAR },
+      { property: "og:title", content: "Entrar no Giranno" },
+      { property: "og:description", content: DESCRICAO_ENTRAR },
+      { property: "og:url", content: "https://giranno.lovable.app/entrar" },
+      { property: "og:image", content: "https://giranno.lovable.app/og-banner.jpg" },
+      { name: "twitter:title", content: "Entrar no Giranno" },
+      { name: "twitter:description", content: DESCRICAO_ENTRAR },
+      { name: "twitter:image", content: "https://giranno.lovable.app/og-banner.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://giranno.lovable.app/entrar" }],
   }),
   component: PaginaEntrar,
 });
@@ -104,7 +106,7 @@ function PaginaEntrar() {
       <div className="entrada-card sombra-card w-full max-w-sm rounded-2xl border border-border bg-card p-7">
         <div className="flex items-center gap-2">
           <Boxes className="size-6 text-primary" aria-hidden="true" />
-          <span className="text-titulo font-bold">Controle de Estoque</span>
+          <span className="text-titulo font-bold">Giranno</span>
         </div>
 
         <h1 className="mt-5 text-titulo font-bold">

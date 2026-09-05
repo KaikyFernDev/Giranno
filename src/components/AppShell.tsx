@@ -53,7 +53,7 @@ export function AppShell({ titulo, descricao, acoes, children }: AppShellProps) 
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6">
           <Link to="/" className="flex items-center gap-2 font-bold text-titulo">
             <Boxes className="size-5 text-primary" aria-hidden="true" />
-            Estoque
+            Giranno
           </Link>
 
           <nav className="ml-4 hidden items-center gap-1 md:flex" aria-label="Principal">
