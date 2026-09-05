@@ -54,14 +54,25 @@ function PaginaEntrar() {
     setEnviando(true);
     try {
       if (modo === "criar") {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password: senha,
           options: { emailRedirectTo: window.location.origin },
         });
         if (error) throw error;
-        toast.success("Conta criada. Você já pode usar o sistema.");
+
+        // Quando a confirmação por e-mail está ativa, o cadastro não devolve
+        // sessão: o usuário precisa clicar no link antes de entrar.
+        if (data.session) {
+          toast.success("Conta criada. Você já pode usar o sistema.");
+        } else {
+          setModo("entrar");
+          setSenha("");
+          toast.success("Enviamos um link de confirmação para o seu e-mail.");
+          setErro("Confirme o e-mail que acabamos de enviar e depois entre por aqui.");
+        }
       } else {
+
         const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
         if (error) throw error;
       }
