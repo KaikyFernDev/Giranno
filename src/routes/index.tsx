@@ -17,21 +17,23 @@ import {
 } from "@/lib/estoque";
 import { produtosQuery } from "@/lib/queries";
 
+const DESCRICAO =
+  "O Giranno acompanha a saída dos seus produtos e avisa o que vai acabar antes de faltar na prateleira.";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Painel de estoque — giro, alertas e reposição" },
-      {
-        name: "description",
-        content:
-          "Veja num relance o que mais sai, o que está parado e o que precisa ser reposto nos próximos 7 dias no seu mercadinho ou loja.",
-      },
-      { property: "og:title", content: "Painel de estoque — giro, alertas e reposição" },
-      {
-        property: "og:description",
-        content: "O que mais sai, o que está parado e o que precisa ser reposto agora.",
-      },
+      { title: "Giranno — Saiba o que repor antes de faltar" },
+      { name: "description", content: DESCRICAO },
+      { property: "og:title", content: "Giranno — Saiba o que repor antes de faltar" },
+      { property: "og:description", content: DESCRICAO },
+      { property: "og:url", content: "https://giranno.lovable.app/" },
+      { property: "og:image", content: "https://giranno.lovable.app/og-banner.jpg" },
+      { name: "twitter:title", content: "Giranno — Saiba o que repor antes de faltar" },
+      { name: "twitter:description", content: DESCRICAO },
+      { name: "twitter:image", content: "https://giranno.lovable.app/og-banner.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://giranno.lovable.app/" }],
   }),
   component: PaginaPainel,
 });
