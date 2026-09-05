@@ -78,14 +78,9 @@ function PaginaEntrar() {
       }
     } catch (e) {
       const mensagem = e instanceof Error ? e.message : "Não foi possível continuar.";
-      setErro(
-        mensagem.includes("Invalid login credentials")
-          ? "E-mail ou senha incorretos."
-          : mensagem.includes("already registered")
-            ? "Este e-mail já tem conta. Tente entrar."
-            : mensagem,
-      );
+      setErro(traduzirErroAuth(mensagem));
     } finally {
+
       setEnviando(false);
     }
   };
