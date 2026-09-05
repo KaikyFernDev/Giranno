@@ -11,9 +11,12 @@ export interface NumeroAnimadoProps extends ComponentProps<"span"> {
   casas?: number;
   /** Texto colado após o número, como "un." ou "dias". */
   sufixo?: string;
+  /** Texto antes do número, como "R$". */
+  prefixo?: string;
   /** Desliga a animação (útil em tabelas densas). */
   estatico?: boolean;
 }
+
 
 /**
  * Número que transiciona por contagem em vez de trocar de uma vez.
