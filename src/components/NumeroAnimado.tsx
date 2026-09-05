@@ -26,6 +26,7 @@ export function NumeroAnimado({
   valor,
   casas = 0,
   sufixo,
+  prefixo,
   estatico = false,
   className,
   ...props
@@ -35,8 +36,10 @@ export function NumeroAnimado({
 
   return (
     <span className={cn("tabular", className)} {...props}>
+      {prefixo ? <span className="mr-1 text-rotulo font-medium">{prefixo}</span> : null}
       {formatarNumero(exibir, casas)}
       {sufixo ? <span className="ml-1 text-rotulo font-medium">{sufixo}</span> : null}
     </span>
   );
 }
+
