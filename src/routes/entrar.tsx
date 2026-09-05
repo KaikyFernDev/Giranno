@@ -177,3 +177,15 @@ function PaginaEntrar() {
     </div>
   );
 }
+
+/** Traduz as mensagens do serviço de contas para linguagem do dia a dia. */
+function traduzirErroAuth(mensagem: string): string {
+  if (mensagem.includes("Invalid login credentials")) return "E-mail ou senha incorretos.";
+  if (mensagem.includes("Email not confirmed"))
+    return "Confirme o e-mail que enviamos antes de entrar.";
+  if (mensagem.includes("already registered") || mensagem.includes("User already registered"))
+    return "Este e-mail já tem conta. Tente entrar.";
+  if (mensagem.includes("rate limit") || mensagem.includes("Too many"))
+    return "Muitas tentativas seguidas. Espere um minuto e tente de novo.";
+  return mensagem;
+}
