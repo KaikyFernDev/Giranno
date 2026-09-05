@@ -232,3 +232,18 @@
     border: none !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Esconde o selo "Edit with Lovable" no site publicado                */
+/* ------------------------------------------------------------------ */
+
+#lovable-badge,
+a[href*="lovable.dev/projects"],
+a[href*="lovable.dev?utm"],
+[id^="lovable-badge"],
+[class*="lovable-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
