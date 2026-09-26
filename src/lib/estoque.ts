@@ -95,11 +95,17 @@ export function sugestaoDeCompra(p: ProdutoComMetricas): number {
   return Math.max(alvo - p.estoque_atual, 1);
 }
 
-/** "3,2 dias" / "sem giro" / "esgotado" */
+/**
+ * "3 dias" / "menos de 1 dia" / "sem giro" / "esgotado".
+ * Arredonda para baixo: dizer "3 dias" quando restam 3,8 é o lado seguro —
+ * nunca promete mais cobertura do que existe.
+ */
 export function formatarDias(p: ProdutoComMetricas): string {
   if (p.estoque_atual <= 0) return "esgotado";
   if (p.dias_restantes === null) return "sem giro";
-  return `${formatarNumero(p.dias_restantes, 1)} ${p.dias_restantes === 1 ? "dia" : "dias"}`;
+  const dias = Math.floor(p.dias_restantes);
+  if (dias < 1) return "menos de 1 dia";
+  return `${formatarNumero(dias)} ${dias === 1 ? "dia" : "dias"}`;
 }
 
 export function formatarNumero(valor: number, casas = 0): string {
